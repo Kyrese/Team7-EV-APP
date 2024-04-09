@@ -7,7 +7,7 @@
 }
 body{
     background-color: var(--primary);
-    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; ;
     margin: 0;
 }
 header, footer{
@@ -17,17 +17,23 @@ header, footer{
     color: var(--primary);
     display: grid;
         grid-template-areas: "brand gap button";
+    
 }
 header :nth-child(1){
     grid-area: brand;
+    margin: 0;
 }
 header :nth-child(2){
     grid-area: button;
+    margin: 0;
+}
+main{
+    height: 80vh;
 }
 #hero{
     background-color: var(--neutral);
     display: flex;
-    height: 40vh;
+    height: 50%;
     left: 0;
 }
 #hero :nth-child(1){
@@ -38,14 +44,13 @@ header :nth-child(2){
     flex-grow: 1;
 }
 nav{
-    height: 40vh;
+    height: 50%;
     display: flex;
         justify-content: space-evenly;
         align-items: center;
 }
-
+/***UI Components***/
 button{
-    height: 5em;
     background-color: var(--accent);
     color: var(--primary);
     border-width: 0;
@@ -63,7 +68,32 @@ button{
     position: relative;
     left: 50%;
 }
-.cardbutton {
-    height:2px
-    width: 20px;
+.credentials{
+    text-align: center;
+}
+.credentials input{
+    display: block;
+    margin: auto;
+}
+input{
+    width: 100px;
+    border-width: 0;
+    border-radius: 25px;
+
+}
+img{
+    width: 100%;
+}
+/***Section Layout****/
+.twoColMain{
+    display: grid;
+        grid-template-columns: 2fr 1.3fr;
+    
+}
+.centered-Column{
+    text-align: center;
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
 }
