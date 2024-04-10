@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team 7</title>
     <link rel="stylesheet" href="style.css">
-
+    <script src="js/app.js" defer></script>
 
 </head>
-<body>
+<body onload = "DisplayVehicle(); setInterval(DisplayVehicle,5000)">
     <header>
         <h1>Team 7</h1>
     </header>
@@ -24,13 +24,12 @@
             <img src="img/nissan-leaf.png" alt="">
             <h2>Battery Status: </h2>
             <p>Charging</p>
-            <p>80%</p>
-            <progress value="80" max="100"></progress>
-            <div id="progress-bar"></div>
+            <p id="chargeLbl">80%</p>
+            <progress value="80" max="100" id="chargeProg"></progress>
             <h2>Model:</h2>
-            <p>The Nissan Leaf</p>
+            <p id="carLbl">The Nissan Leaf</p>
             <h2>Warning: </h2>
-            <p>No warnings currently.</p>
+            <p id="warningLbl">No warnings currently.</p>
         </section>
     </main>
     <footer></footer>
