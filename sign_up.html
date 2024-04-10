@@ -4,10 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team 7</title>
     <link rel="stylesheet" href="style.css">
+    <script src="js/app.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Team 7</h1>
+        <h1>Team 7</h1> <a href="index.html"> home</a>
     </header>
     <main>
         <section class="credentials">
@@ -15,7 +16,7 @@
             <form action="">
                 <input type="email" name="email" placeholder="Email" id="log-in-email"><br>
                 <input type="password" name="password" placeholder="Password" id="log-in-password"><br>
-                <input type="submit" value="Log In">
+                <button onclick="LogIn()"> Log In</button>
             </form>
         </section>
         <section class="credentials">
@@ -23,8 +24,8 @@
             <form action="">
                 <input type="email" name="email" placeholder="Email" id="sign-up-email"><br>
                 <input type="text" name="vechicleId" placeholder="Vechicle ID"id="vechicleIdTXT"><br>
-                <input type="password" name="password" placeholder="Password" id="sign-up-password"><br>
-                <input type="submit" value="Sign Up">
+                <input type="password" name="password" placeholder="Password" id= "sign-up-password"><br>
+                <button onclick="SignUp()"> SignUp</button>
             </form>
         </section>
     </main>
