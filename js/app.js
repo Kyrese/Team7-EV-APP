@@ -1,5 +1,4 @@
-
-var user = {
+user = {
     email:"boop@boop.com",
     password:"1234",
     userPoints:1234,
@@ -12,7 +11,9 @@ var user = {
 function DisplayVehicle() {
 
     user = JSON.parse(sessionStorage.getItem("user"));
-    let chargeProg = document.getElementById("chargeProg") ; //get charge progess element
+
+    if(!user) window.location.replace("sign_up.html");
+    let chargeProg = document.getElementById("chargeProg"); //get charge progess element
     let chargeLbl = document.getElementById("chargeLbl"); // get charge lbl
     let carLbl = document.getElementById("carLbl");
     let warningLbl = document.getElementById("warningLbl");
@@ -28,6 +29,45 @@ function DisplayVehicle() {
     if(!warningLbl) return;
     user.batteryWarning = user.vechileCharge == 0 ? "Battery at 0!" : user.vechileCharge < 5 ? "Battery at 5 or less!" : user.vechileCharge < 10 ? "Battery is 10 or less!" : user.vechileCharge < 20 ? "Battery is 20 or less!" : user.vechileCharge < 50 ? "Battery is 50 or less!" : "No warning currently";
     warningLbl.innerText = user.batteryWarning;
+}
+
+function DisplayRebatePoints(){
+    user = JSON.parse(sessionStorage.getItem("user"));
+
+    if(!user) window.location.replace("sign_up.html");
+
+    //get dom elements
+    let pointLbl = document.getElementById("pointsLbl");
+
+    pointLbl.innerText = user.userPoints;
+}
+
+function redeemPoints(){
+    let transaction = db.transaction("users", "readwrite");
+    transaction.oncomplete = (event) => {
+        alert("transaction complete");
+    }
+    transaction.onerror = (event) => {
+        console.error(`kyrese is crying because ${event.target.errorCode}`, event.target.error);
+    };
+    
+    const req = transaction.objectStore("users").get(user.email);
+
+    req.onsuccess = (event) => {
+        res = event.target.result
+        if(!res){
+            alert("Invalid User");
+            return;
+        }
+        
+        res.userPoints = 0;
+
+        transaction.objectStore("users").put(res); //Update user data
+    };
+
+    req.onerror = (event) => {
+        console.error(`kyrese is crying because ${event.target.errorCode}`, event.target.error);
+    };
 }
 
 // DATABASE
@@ -58,17 +98,6 @@ DBOpenRequest.onupgradeneeded = (event) => {
     // Create an index to search customers by email. We want to ensure that
     // no two customers have the same email, so use a unique index.
     objectStore.createIndex("email", "email", { unique: true });
-
-    // Use transaction oncomplete to make sure the objectStore creation is
-    // finished before adding data into it.
-    /*objectStore.transaction.oncomplete = (event) => {
-    // Store values in the newly created objectStore.
-    const customerObjectStore = db
-      .transaction("customers", "readwrite")
-      .objectStore("customers");
-    customerData.forEach((customer) => {
-      customerObjectStore.add(customer);
-    });*/
 };
 
 
@@ -95,7 +124,11 @@ function LogIn(){
         }
         
         if(psswdTxt.value == res.password)
-            sessionStorage.setItem("user", JSON.stringify(res));
+            {
+                alert("Successful Log In")
+                sessionStorage.setItem("user", JSON.stringify(res));
+                window.location.replace("index.html");
+            }
     };
 
     req.onerror = (event) => {
@@ -113,7 +146,7 @@ function SignUp(){
     user = {
         email: emailTxT.value,
         password: psswdTxt.value,
-        userPoints: 0,
+        userPoints: 40,
         vehicleID: vecIDTxt.value,
         vechileCharge: 100,
         batteryWarning: "TBD",
