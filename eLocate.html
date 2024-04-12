@@ -4,32 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team 7</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3772PcU0YkYKAdh1TLLDVcfsofzr-4M&callback=initMap" defer></script>
-    <script>
-        function initMap(){
-            let map;
-
-            async function initMap() {
-            const { Map } = await google.maps.importLibrary("maps");
-
-            map = new Map(document.getElementById("map"), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8,
-            });
-            }
-
-            initMap();
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1>Team 7</h1>
+        <a href="index.html" style="text-decoration: none; color: white;">
+            <h1>Team 7</h1>
+        </a>
     </header>
-    <main class="twoColMain">
+    <main class="twoRowMain">
         <section id="map">
+            <iframe src="https://my.atlist.com/map/ed1fd492-7e06-4226-8e77-2d0cfb0830a9/?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="100%" loading="lazy" frameborder="0" scrolling="no" allowfullscreen id="atlist-embed"></iframe>
         </section>
         <section>
+            <h1>eLocate</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, magni labore ullam maxime libero rem commodi accusamus voluptate, esse, odit dolorum. Temporibus nulla quos itaque rerum necessitatibus dolorum! Fuga, illum!</p>
         </section>
     </main>
     <footer></footer>
