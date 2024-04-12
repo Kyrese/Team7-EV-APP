@@ -41,6 +41,10 @@ main{
 }
 #hero :nth-child(2){
     background-color: aqua;
+    background-image: url("img/vehicle-charging.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-clip: border-box;
     flex-grow: 1;
 }
 nav{
@@ -89,6 +93,10 @@ img{
     display: grid;
         grid-template-columns: 2fr 1.3fr;
     
+}
+.twoRowMain{
+    display: grid;
+        grid-template-rows: 2fr 1fr;
 }
 .centered-Column{
     text-align: center;
