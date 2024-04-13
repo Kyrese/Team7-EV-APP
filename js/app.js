@@ -139,8 +139,8 @@ function LogIn(){
 function SignUp(){
     //get DOM elements
     const emailTxT = document.getElementById("sign-up-email");
-    const psswdTxt = document.getElementById("vechicleIdTXT");
-    const vecIDTxt = document.getElementById("sign-up-password");
+    const psswdTxt = document.getElementById("sign-up-password");
+    const vecIDTxt = document.getElementById("vechicleIdTXT");
 
     user = {
         email: emailTxT.value,
