@@ -100,8 +100,6 @@ DBOpenRequest.onupgradeneeded = (event) => {
     // no two customers have the same email, so use a unique index.
     objectStore.createIndex("email", "email", { unique: true });
 };
-
-
 function LogIn(){
     //get DOM elements
     const emailTxT = document.getElementById("log-in-email");
