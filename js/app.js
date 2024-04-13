@@ -45,7 +45,7 @@ function DisplayRebatePoints(){
 function redeemPoints(){
     let transaction = db.transaction("users", "readwrite");
     transaction.oncomplete = (event) => {
-        alert("transaction complete");
+        alert("Points redeemed");
     }
     transaction.onerror = (event) => {
         console.error(`kyrese is crying because ${event.target.errorCode}`, event.target.error);
@@ -61,7 +61,8 @@ function redeemPoints(){
         }
         
         res.userPoints = 0;
-
+        DisplayRebatePoints();
+        sessionStorage.setItem("user", JSON.stringify(res)); // Update session data
         transaction.objectStore("users").put(res); //Update user data
     };
 
@@ -107,11 +108,8 @@ function LogIn(){
     const psswdTxt = document.getElementById("log-in-password");
 
     let transaction = db.transaction("users", "readwrite");
-    transaction.oncomplete = (event) => {
-        alert("transaction complete");
-    }
     transaction.onerror = (event) => {
-        console.error(`kyrese is crying because ${event.target.errorCode}`, event.target.error);
+        console.error(`Kyrese is crying because ${event.target.errorCode}`, event.target.error);
     };
     
     const req = transaction.objectStore("users").get(emailTxT.value);
@@ -124,11 +122,14 @@ function LogIn(){
         }
         
         if(psswdTxt.value == res.password)
-            {
-                alert("Successful Log In")
-                sessionStorage.setItem("user", JSON.stringify(res));
-                window.location.replace("index.html");
-            }
+        {
+            alert("Successful Log In");
+            sessionStorage.setItem("user", JSON.stringify(res));
+            window.location.replace("index.html");
+        }
+        else{
+            alert ("Incorrect credentials");
+        }
     };
 
     req.onerror = (event) => {
@@ -163,5 +164,11 @@ function SignUp(){
         console.error(`kyrese is crying because ${event.target.errorCode}`);
     };
 
-    transaction.objectStore("users").add(user);
+    let request = transaction.objectStore("users").add(user);
+
+    request.onsuccess = (event) => {
+        alert("Successful Log In");
+        sessionStorage.setItem("user", JSON.stringify(user));
+        window.location.replace("index.html");
+    }
 }
